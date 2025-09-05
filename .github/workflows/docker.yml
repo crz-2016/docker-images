@@ -7,7 +7,7 @@ on:
 
 
 env:
-  ALIYUN_REGISTER: "${{ secrets.ALIYUN_REGISTR }}"
+  ALIYUN_REGISTER: "${{ secrets.ALIYUN_REGISTER }}"
   ALIYUN_NAMESPACE: "${{ secrets.ALIYUN_NAMESPACE }}"
   ALIYUN_USER: "${{ secrets.ALIYUN_USER }}"
   ALIYUN_PASSWORD: "${{ secrets.ALIYUN_PASSWORD }}"
@@ -57,7 +57,7 @@ jobs:
 
     - name: Build and push image Aliyun
       run: |
-        winpty sudo docker login -u $ALIYUN_USER -p $ALIYUN_PASSWORD $ALIYUN_REGISTER
+        docker login -u $ALIYUN_USER -p $ALIYUN_PASSWORD $ALIYUN_REGISTER
         # 数据预处理,判断镜像是否重名
         declare -A duplicate_images
         declare -A temp_map
