@@ -144,8 +144,8 @@ jobs:
                   name_space_prefix="${name_space}_"
                fi
             fi
-            echo "3、==>$ALIYUN_REGISTER/$ALIYUN_NAMESPACE/$image_name_tag"
-            new_image="$ALIYUN_REGISTER/$ALIYUN_NAMESPACE/$image_name_tag"
+            echo "3、==>${{ secrets.ALIYUN_REGISTER }}/${{ secrets.ALIYUN_NAMESPACE }}/$image_name_tag"
+            new_image="${{ secrets.ALIYUN_REGISTER }}/${{ secrets.ALIYUN_NAMESPACE }}/$image_name_tag"
             echo "docker tag $image $new_image"
             docker tag $image $new_image
             echo "docker push $new_image"
