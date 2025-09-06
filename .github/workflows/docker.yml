@@ -138,7 +138,14 @@ jobs:
             echo "${name_space_prefix} -- ${name_space}"
             # 将@sha256:等字符删除
             image_name_tag="${image_name_tag%%@*}"
-            new_image="$ALIYUN_REGISTER/$ALIYUN_NAMESPACE/$platform_prefix$name_space_prefix$image_name_tag"
+             if [[ -n "${duplicate_images[$image_name]}" ]]; then
+               #如果命名空间非空，将命名空间加到前缀
+               if [[ -n "${name_space}" ]]; then
+                  name_space_prefix="${name_space}_"
+               fi
+            fi
+          
+            new_image="$ALIYUN_REGISTER/$ALIYUN_NAMESPACE/$name_space_prefix$image_name_tag"
             echo "docker tag $image $new_image"
             docker tag $image $new_image
             echo "docker push $new_image"
