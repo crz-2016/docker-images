@@ -57,8 +57,15 @@ jobs:
 
     - name: Build and push image Aliyun
       run: |
-        [ -z "$ALIYUN_REGISTER" ] && exit 1
-        [ -z "$ALIYUN_NAMESPACE" ] && exit 1
+        # 检查原始Secret
+        echo "Raw Secret: ${{ secrets.ALIYUN_REGISTER }}"
+        # 检查环境变量
+        echo "Processed Var: $ALIYUN_REGISTER"
+        # 空值检查
+        if [ -z "$ALIYUN_REGISTER" ]; then
+          echo "❌ 错误：ALIYUN_REGISTER未设置" >&2
+          exit 1
+        fi
         docker login --username=$ALIYUN_USER $ALIYUN_REGISTER 
         echo "1、==> $ALIYUN_REGISTER/$ALIYUN_NAMESPACE/${name_space_prefix}${image_name_tag}"
         # 数据预处理,判断镜像是否重名
