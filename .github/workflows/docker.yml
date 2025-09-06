@@ -145,7 +145,7 @@ jobs:
                fi
             fi
             echo "3、==>${{ env.ALIYUN_REGISTER }}/${{ env.ALIYUN_NAMESPACE }}/$image_name_tag"
-            new_image="${{ env.ALIYUN_REGISTER }}/${{ env.ALIYUN_NAMESPACE }}/$image_name_tag"
+            new_image="crpi-lnfoy1ln6zadmx2l.cn-hangzhou.personal.cr.aliyuncs.com/hxcdocker/$image_name_tag"
             echo "docker tag $image $new_image"
             docker tag $image $new_image
             echo "docker push $new_image"
