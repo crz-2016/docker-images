@@ -57,6 +57,12 @@ jobs:
 
     - name: Build and push image Aliyun
       run: |
+        echo "Raw Secrets:"
+        echo "ALIYUN_REGISTER: ${{ secrets.ALIYUN_REGISTER }}"
+        echo "ALIYUN_NAMESPACE: ${{ secrets.ALIYUN_NAMESPACE }}"
+        echo "Env Variables:"
+        echo "ALIYUN_REGISTER: $ALIYUN_REGISTER"
+        echo "ALIYUN_NAMESPACE: $ALIYUN_NAMESPACE"
         docker login --username=$ALIYUN_USER $ALIYUN_REGISTER 
         echo "1、==> $ALIYUN_REGISTER/$ALIYUN_NAMESPACE/${name_space_prefix}${image_name_tag}"
         # 数据预处理,判断镜像是否重名
