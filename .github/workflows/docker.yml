@@ -144,7 +144,7 @@ jobs:
                   name_space_prefix="${name_space}_"
                fi
             fi
-          
+            echo "$ALIYUN_REGISTER=$ALIYUN_NAMESPACE/=$name_space_prefix=$image_name_tag "
             new_image="$ALIYUN_REGISTER/$ALIYUN_NAMESPACE/$name_space_prefix$image_name_tag"
             echo "docker tag $image $new_image"
             docker tag $image $new_image
